@@ -1,0 +1,28 @@
+// ── COLORS ──
+$bg: #05070a;
+$bg-panel: #0b0f17;
+$bg-panel-2: #0e1420;
+$green: #00e5a0;
+$green-dim: #0a5c46;
+$red: #ff3b3b;
+$red-dim: #4a1414;
+$steel: #5b7a99;
+$steel-dim: #2a3a4a;
+$text: #e8ecf1;
+$text-dim: #8a97a8;
+$border: #1c2532;
+
+// ── FONTS ──
+$font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+$font-body: 'Inter', -apple-system, sans-serif;
+
+// ── MISC TOKENS ──
+$hud-blur: blur(8px);
+
+// ── BREAKPOINTS ──
+$bp-terminal: 900px;
+$bp-hud: 815px;
+$bp-grid: 800px;
+$bp-nav: 760px;
+$bp-hero-actions: 625px;
+$bp-hud-small: 400px;

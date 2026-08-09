@@ -1,0 +1,43 @@
+@use '../abstracts/variables' as *;
+
+.doc-meta {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	margin-bottom: 24px;
+	font-family: $font-mono;
+}
+
+.doc-meta__tag {
+	padding: 5px 10px;
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	border: 1px solid currentColor;
+
+	&--problem {
+		color: $red;
+	}
+
+	&--approach {
+		color: $steel;
+	}
+
+	&--arch {
+		color: $green;
+	}
+
+	&--result {
+		color: $green;
+	}
+
+	&--contact {
+		color: $text-dim;
+	}
+}
+
+.doc-meta__time {
+	font-size: 11px;
+	color: $text-dim;
+	letter-spacing: 0.06em;
+}

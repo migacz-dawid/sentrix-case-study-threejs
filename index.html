@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SENTRIX — AI Threat Detection · Case Study</title>
+<meta name="description" content="SENTRIX: system AI do wykrywania anomalii i zagrożeń w sieci firmowej w czasie rzeczywistym. Case study projektu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/main.css">
+<link type="image/png" rel="icon" href="./img/favicon1.png">
+
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="nav__brand">
+    <span class="nav__dot" id="statusDot"></span>
+    SENTRIX
+  </div>
+  <div class="nav__links">
+    <a href="#problem">Problem</a>
+    <a href="#approach">Podejście</a>
+    <a href="#architecture">Architektura</a>
+    <a href="#result">Wynik</a>
+  </div>
+  <div class="nav__status" id="navStatus">SYSTEM: <span class="nav__status-val">MONITOROWANIE</span></div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="hero">
+  <canvas id="net-canvas"></canvas>
+
+  <!-- HUD overlay -->
+  <div class="hud">
+    <div class="hud__panel hud__panel--top-left">
+      <div class="hud__label">NODES ACTIVE</div>
+      <div class="hud__value" id="hudNodes">128</div>
+    </div>
+    <div class="hud__panel hud__panel--top-right">
+      <div class="hud__label">THREAT LEVEL</div>
+      <div class="hud__value hud__value--status" id="hudThreat">NISKI</div>
+    </div>
+    <div class="hud__panel hud__panel--bottom-left">
+      <div class="hud__label">PRZEPUSTOWOŚĆ</div>
+      <div class="hud__value" id="hudThroughput">4.2 TB/h</div>
+    </div>
+    <div class="hud__panel hud__panel--bottom-right">
+      <div class="hud__label">CZAS DZIAŁANIA</div>
+      <div class="hud__value" id="hudUptime">00:00:00</div>
+    </div>
+  </div>
+
+  <!-- Alert log terminal -->
+  <div class="terminal" id="terminal">
+    <div class="terminal__header">LOG_ZDARZEŃ</div>
+    <div class="terminal__body" id="terminalBody">
+      <div class="terminal__line terminal__line--info">&gt; system zainicjalizowany. nasłuchiwanie ruchu sieciowego...</div>
+    </div>
+  </div>
+
+  <div class="hero__content">
+    <div class="hero__eyebrow">CASE STUDY — CYBERBEZPIECZEŃSTWO</div>
+    <h1 class="hero__title">SENTRIX widzi<br>zanim wybuchnie<span class="hero__cursor">_</span></h1>
+    <p class="hero__subtitle">System AI monitorujący ruch sieciowy firmy w czasie rzeczywistym — wykrywa anomalie, izoluje zagrożenie i alarmuje zespół, zanim atak zdąży się rozprzestrzenić.</p>
+    <div class="hero__actions">
+      <a href="#problem" class="hero__cta">Zobacz jak to działa <span class="hero__cta-arrow">↓</span></a>
+      <button type="button" id="simulateAttackBtn" class="hero__cta hero__cta--ghost">Symuluj atak <span class="hero__cta-bolt">⚡</span></button>
+    </div>
+  </div>
+
+  <div class="hero__scroll-hint">SCROLL</div>
+</header>
+
+<!-- ============ MAIN CONTENT ============ -->
+<main>
+
+  <!-- ---- PROBLEM ---- -->
+  <section class="section" id="problem">
+    <div class="section__inner">
+      <div class="doc-meta">
+        <span class="doc-meta__tag doc-meta__tag--problem">PROBLEM</span>
+        <span class="doc-meta__time">RAPORT INCYDENTU · SEKCJA 01</span>
+      </div>
+      <h2 class="section__title" data-reveal="up">Zespoły bezpieczeństwa reagują po fakcie</h2>
+      <div class="section__grid">
+        <p class="section__lead" data-reveal="left">
+          W przeciętnej sieci firmowej dzieje się zbyt dużo, by człowiek mógł to ogarnąć. Tysiące połączeń na sekundę, setki urządzeń, ruch, który w 99,9% jest niegroźny — a ten jeden procent gubi się w szumie. Klasyczne systemy SIEM opierają się na regułach: jeśli ktoś nie zapisał sygnatury ataku wcześniej, atak przechodzi bez echa.
+        </p>
+        <div class="stat-block" data-reveal="right">
+          <div class="stat">
+            <div class="stat__value"><span class="js-count" data-count="277">0</span><span class="stat__unit">dni</span></div>
+            <div class="stat__label">średni czas wykrycia naruszenia w organizacjach bez monitoringu AI*</div>
+          </div>
+          <div class="stat">
+            <div class="stat__value"><span class="js-count" data-count="82">0</span><span class="stat__unit">%</span></div>
+            <div class="stat__label">ataków wykorzystuje ruch, który wygląda "normalnie" dla reguł statycznych*</div>
+          </div>
+        </div>
+      </div>
+      <p class="section__footnote">* dane orientacyjne, branża cyberbezpieczeństwa — kontekst projektu fikcyjnego</p>
+    </div>
+  </section>
+
+  <!-- ---- APPROACH ---- -->
+  <section class="section section--alt" id="approach">
+    <div class="section__inner">
+      <div class="doc-meta">
+        <span class="doc-meta__tag doc-meta__tag--approach">PODEJŚCIE</span>
+        <span class="doc-meta__time">RAPORT INCYDENTU · SEKCJA 02</span>
+      </div>
+      <h2 class="section__title" data-reveal="up">Uczyć system, czym jest "normalne" — nie tylko czym jest "znane"</h2>
+      <p class="section__lead" data-reveal="left">
+        Zamiast polegać na bazie sygnatur znanych ataków, SENTRIX buduje własny, stale aktualizowany model normalnego zachowania sieci — dla każdego węzła, użytkownika i usługi z osobna. Odchylenie od tego wzorca, nawet subtelne, generuje sygnał. Im więcej sygnałów nakłada się w krótkim czasie, tym wyżej rośnie poziom zagrożenia.
+      </p>
+
+      <div class="approach-cards">
+        <div class="approach-card" data-reveal="up" data-reveal-delay="0">
+          <div class="approach-card__num">Baseline</div>
+          <h3>Model normalności</h3>
+          <p>Sieć neuronowa uczy się typowych wzorców ruchu dla każdego segmentu sieci — pory dnia, wolumeny, kierunki połączeń.</p>
+        </div>
+        <div class="approach-card" data-reveal="up" data-reveal-delay="120">
+          <div class="approach-card__num">Detekcja</div>
+          <h3>Wykrywanie anomalii</h3>
+          <p>Każdy pakiet porównywany jest z baseline w czasie rzeczywistym. Odchylenia są ważone i sumowane per węzeł.</p>
+        </div>
+        <div class="approach-card" data-reveal="up" data-reveal-delay="240">
+          <div class="approach-card__num">Reakcja</div>
+          <h3>Automatyczna izolacja</h3>
+          <p>Po przekroczeniu progu, węzeł zostaje odcięty od reszty sieci zanim analityk zdąży otworzyć dashboard.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---- ARCHITECTURE ---- -->
+  <section class="section" id="architecture">
+    <div class="section__inner">
+      <div class="doc-meta">
+        <span class="doc-meta__tag doc-meta__tag--arch">ARCHITEKTURA</span>
+        <span class="doc-meta__time">RAPORT INCYDENTU · SEKCJA 03</span>
+      </div>
+      <h2 class="section__title" data-reveal="up">Trzy warstwy, jeden refleks</h2>
+      <div class="arch-flow">
+        <div class="arch-step" data-reveal="left" data-reveal-delay="0">
+          <div class="arch-step__icon">◇</div>
+          <div class="arch-step__label">Zbieranie</div>
+          <div class="arch-step__desc">Ruch sieciowy przechwytywany na poziomie switchy i endpointów, strumieniowany do warstwy analitycznej.</div>
+        </div>
+        <div class="arch-connector"></div>
+        <div class="arch-step" data-reveal="left" data-reveal-delay="120">
+          <div class="arch-step__icon">◈</div>
+          <div class="arch-step__label">Analiza</div>
+          <div class="arch-step__desc">Model detekcji anomalii ocenia każdy strumień względem baseline, z uwzględnieniem kontekstu czasowego.</div>
+        </div>
+        <div class="arch-connector"></div>
+        <div class="arch-step" data-reveal="left" data-reveal-delay="240">
+          <div class="arch-step__icon">◆</div>
+          <div class="arch-step__label">Reakcja</div>
+          <div class="arch-step__desc">Alert trafia do zespołu SOC, a podejrzany węzeł jest automatycznie kwarantannowany.</div>
+        </div>
+      </div>
+
+      <div class="tech-stack" data-reveal="up">
+        <div class="tech-stack__label">STOS TECHNOLOGICZNY</div>
+        <div class="tech-stack__items">
+          <span>Python</span><span>PyTorch</span><span>Kafka</span><span>Elasticsearch</span><span>Grafana</span><span>gRPC</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---- RESULT ---- -->
+  <section class="section section--alt" id="result">
+    <div class="section__inner">
+      <div class="doc-meta">
+        <span class="doc-meta__tag doc-meta__tag--result">WYNIK</span>
+        <span class="doc-meta__time">RAPORT INCYDENTU · SEKCJA 04 — ZAMKNIĘTY</span>
+      </div>
+      <h2 class="section__title" data-reveal="up">Od wykrycia do izolacji: sekundy, nie dni</h2>
+      <div class="result-grid">
+        <div class="result-stat" data-reveal="up" data-reveal-delay="0">
+          <div class="result-stat__value"><span class="js-count" data-count="1.8" data-decimals="1">0</span><span class="stat__unit">s</span></div>
+          <div class="result-stat__label">średni czas od anomalii do alertu</div>
+        </div>
+        <div class="result-stat" data-reveal="up" data-reveal-delay="120">
+          <div class="result-stat__value"><span class="js-count" data-count="99.3" data-decimals="1">0</span><span class="stat__unit">%</span></div>
+          <div class="result-stat__label">skuteczność wykrywania w środowisku testowym</div>
+        </div>
+        <div class="result-stat" data-reveal="up" data-reveal-delay="240">
+          <div class="result-stat__value"><span class="js-count" data-count="0">0</span><span class="stat__unit"></span></div>
+          <div class="result-stat__label">fałszywych alarmów wymagających eskalacji w 30-dniowym teście</div>
+        </div>
+      </div>
+      <p class="section__lead">
+        Projekt SENTRIX to demonstracja podejścia, w którym bezpieczeństwo sieci nie jest listą reguł do aktualizowania, tylko systemem, który uczy się razem z siecią, jaką chroni.
+      </p>
+    </div>
+  </section>
+
+  <!-- ---- ABOUT / CONTACT ---- -->
+  <section class="section section--contact" id="contact">
+    <div class="section__inner section__inner--narrow">
+      <div class="doc-meta">
+        <span class="doc-meta__tag doc-meta__tag--contact">O AUTORZE</span>
+      </div>
+      <h2 class="section__title" data-reveal="up">Zbudowane jako projekt portfolio</h2>
+      <p class="section__lead" data-reveal="up">
+        SENTRIX to fikcyjny projekt zaprojektowany, by pokazać podejście do wizualizacji danych, animacji 3D w przeglądarce i projektowania interfejsów dla systemów czasu rzeczywistego.
+      </p>
+      <div class="contact-links" data-reveal="up">
+        <a href="#" class="contact-link">GitHub ↗</a>
+        <a href="#" class="contact-link">LinkedIn ↗</a>
+        <a href="#" class="contact-link">Email ↗</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <span>SENTRIX — projekt koncepcyjny do portfolio</span>
+  <span>Zbudowano z Three.js</span>
+</footer>
+
+<script src="./js/three.js"></script>
+<script type="module" src="./js/network.js"></script>
+<script type="module" src="./js/attack.js"></script>
+<script type="module" src="./js/reveal.js"></script>
+<script type="module" src="./js/counters.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+@use '../abstracts/variables' as *;
+
+.terminal {
+	position: absolute;
+	display: none;
+	top: clamp(70px, 10vh, 110px);
+	right: clamp(20px, 6vw, 72px);
+	width: 300px;
+	max-width: 40vw;
+	font-family: $font-mono;
+	font-size: 11px;
+	background: rgba(11, 15, 23, 0.75);
+	border: 1px solid $border;
+	backdrop-filter: $hud-blur;
+	z-index: 6;
+
+	@media (min-width: $bp-terminal) {
+		display: block;
+	}
+}
+
+.terminal__header {
+	padding: 8px 12px;
+	border-bottom: 1px solid $border;
+	letter-spacing: 0.1em;
+	font-size: 10px;
+	color: $text-dim;
+}
+
+.terminal__body {
+	display: flex;
+	flex-direction: column-reverse;
+	gap: 4px;
+	padding: 8px 12px;
+	height: 130px;
+	overflow: hidden;
+}
+
+.terminal__line {
+	line-height: 1.5;
+	color: $steel;
+	animation: fadeIn 0.3s forwards;
+	opacity: 0;
+
+	&--info {
+		color: $steel;
+	}
+
+	&--alert {
+		color: $red;
+		font-weight: 600;
+	}
+
+	&--resolved {
+		color: $green;
+	}
+}

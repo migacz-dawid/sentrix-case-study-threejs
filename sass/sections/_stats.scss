@@ -1,0 +1,32 @@
+@use '../abstracts/variables' as *;
+
+.stat-block {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.stat {
+	padding-left: 18px;
+	border-left: 2px solid $red;
+}
+
+.stat__value {
+	font-family: $font-mono;
+	font-size: 2.4rem;
+	font-weight: 700;
+	font-variant-numeric: tabular-nums;
+	color: $text;
+}
+
+.stat__unit {
+	font-size: 1.1rem;
+	color: $text-dim;
+	margin-left: 4px;
+}
+
+.stat__label {
+	color: $text-dim;
+	font-size: 0.9rem;
+	margin-top: 6px;
+}

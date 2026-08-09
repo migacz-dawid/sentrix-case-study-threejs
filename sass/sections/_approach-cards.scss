@@ -1,0 +1,36 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.approach-cards {
+	@include responsive-3col(1px);
+	margin-top: 40px;
+	background: $border;
+	border: 1px solid $border;
+}
+
+.approach-card {
+	padding: 32px 28px;
+	background: $bg-panel;
+}
+
+.approach-card__num {
+	margin-bottom: 16px;
+	font-family: $font-mono;
+	font-size: 11px;
+	letter-spacing: 0.12em;
+	color: $green;
+}
+
+.approach-card {
+	h3 {
+		margin-bottom: 12px;
+		font-family: $font-mono;
+		font-size: 1.1rem;
+		font-weight: 600;
+	}
+
+	p {
+		color: $text-dim;
+		font-size: 0.92rem;
+	}
+}

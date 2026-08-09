@@ -1,0 +1,20 @@
+@use '../abstracts/variables' as *;
+
+.contact-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 28px;
+	margin-top: 32px;
+	font-family: $font-mono;
+	font-size: 14px;
+}
+
+.contact-link {
+	color: $green;
+	border-bottom: 1px solid transparent;
+	transition: border-color 0.2s;
+
+	&:hover {
+		border-color: $green;
+	}
+}

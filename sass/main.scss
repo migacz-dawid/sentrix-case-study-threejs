@@ -1,0 +1,47 @@
+// ── BASE ── RESET
+@use 'base/reset';
+
+// ── ABSTRACTS (variables, mixins, animations — no direct CSS output) ──
+@use 'abstracts/variables';
+@use 'abstracts/animations';
+@use 'abstracts/mixins';
+
+// ── BASE (rest) ──
+@use 'base/a11y';
+@use 'base/base';
+
+// ── NAV ──
+@use 'components/nav';
+
+// ── HERO ──
+@use 'sections/hero';
+@use 'sections/hero-cta';
+
+// ── HUD + TERMINAL ──
+@use 'sections/hud';
+@use 'components/terminal';
+
+// ── SECTION SHELL + DOC META (shared across content sections) ──
+@use 'sections/section-shell';
+@use 'sections/doc-meta';
+
+// ── PROBLEM SECTION ──
+@use 'sections/stats';
+
+// ── APPROACH SECTION ──
+@use 'sections/approach-cards';
+
+// ── ARCHITECTURE SECTION ──
+@use 'sections/architecture';
+
+// ── RESULT SECTION ──
+@use 'sections/result';
+
+// ── CONTACT SECTION ──
+@use 'sections/contact';
+
+// ── REVEAL ANIMATION UTILITY ──
+@use 'components/reveal';
+
+// ── FOOTER ──
+@use 'sections/footer';

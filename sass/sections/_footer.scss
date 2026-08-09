@@ -1,0 +1,12 @@
+@use '../abstracts/variables' as *;
+
+.footer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 8px;
+	padding: 28px clamp(20px, 6vw, 72px);
+	font-family: $font-mono;
+	font-size: 11px;
+	color: $text-dim;
+}

@@ -1,0 +1,63 @@
+@use '../abstracts/variables' as *;
+
+.hero__cta {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	padding: 14px 22px;
+	font-family: $font-mono;
+	font-size: 13px;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	color: $bg;
+	background: $green;
+	border: 1px solid $green;
+	border-radius: 2px;
+	transition:
+		transform 0.2s,
+		box-shadow 0.2s,
+		opacity 0.2s;
+	cursor: pointer;
+
+	&:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 8px 24px rgba(0, 229, 160, 0.25);
+	}
+}
+
+.hero__cta-arrow {
+	transition: transform 0.2s;
+
+	.hero__cta:hover & {
+		transform: translateY(3px);
+	}
+}
+
+.hero__cta--ghost {
+	color: $text;
+	background: transparent;
+	border-color: $steel-dim;
+
+	&:hover {
+		color: $red;
+		border-color: $red;
+		box-shadow: 0 8px 24px rgba(255, 59, 59, 0.15);
+	}
+
+	&:disabled {
+		color: $text-dim;
+		border-color: $steel-dim;
+		box-shadow: none;
+		transform: none;
+		cursor: not-allowed;
+		opacity: 0.4;
+	}
+}
+
+.hero__cta-bolt {
+	transition: transform 0.2s;
+
+	.hero__cta--ghost:hover & {
+		transform: scale(1.15);
+	}
+}

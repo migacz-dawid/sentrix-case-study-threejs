@@ -1,0 +1,72 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.hud {
+	position: absolute;
+	inset: 0;
+	padding: clamp(70px, 10vh, 110px) clamp(20px, 6vw, 72px) 0;
+	pointer-events: none;
+	z-index: 5;
+}
+
+.hud__panel {
+	position: absolute;
+	font-family: $font-mono;
+}
+
+.hud__panel--top-left {
+	@include hud-corner-position;
+	left: clamp(20px, 6vw, 72px);
+}
+
+.hud__panel--top-right {
+	@include hud-corner-position;
+	right: clamp(20px, 6vw, 72px);
+	text-align: right;
+
+	@media (max-width: $bp-hud) {
+		display: none;
+	}
+}
+
+.hud__panel--bottom-left {
+	bottom: 90px;
+	right: clamp(100px, 45vw, 220px);
+
+	@media (max-width: $bp-hud) {
+		display: none;
+	}
+}
+
+.hud__panel--bottom-right {
+	bottom: 90px;
+	right: clamp(20px, 6vw, 72px);
+	text-align: right;
+
+	@media (max-width: $bp-hud-small) {
+		display: none;
+	}
+}
+
+.hud__label {
+	font-size: 10px;
+	letter-spacing: 0.14em;
+	color: $text-dim;
+	margin-bottom: 6px;
+}
+
+.hud__value {
+	font-size: 20px;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+	color: $text;
+	transition: color 0.3s;
+
+	&--status {
+		color: $green;
+
+		&.alert {
+			color: $red;
+		}
+	}
+}

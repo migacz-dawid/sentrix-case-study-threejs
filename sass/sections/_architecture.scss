@@ -1,0 +1,76 @@
+@use '../abstracts/variables' as *;
+
+.arch-flow {
+	display: flex;
+	align-items: stretch;
+	gap: 0;
+	margin-top: 48px;
+
+	@media (max-width: $bp-grid) {
+		flex-direction: column;
+	}
+}
+
+.arch-step {
+	flex: 1;
+	padding: 8px;
+}
+
+.arch-step__icon {
+	margin-bottom: 12px;
+	font-size: 22px;
+	color: $green;
+}
+
+.arch-step__label {
+	margin-bottom: 10px;
+	font-family: $font-mono;
+	font-weight: 700;
+	font-size: 1rem;
+}
+
+.arch-step__desc {
+	font-size: 0.88rem;
+	color: $text-dim;
+}
+
+.arch-connector {
+	align-self: center;
+	width: 60px;
+	height: 1px;
+	background: repeating-linear-gradient(to right, $steel 0, $steel 4px, transparent 4px, transparent 8px);
+
+	@media (max-width: $bp-grid) {
+		width: 1px;
+		height: 32px;
+		margin-left: 8px;
+	}
+}
+
+.tech-stack {
+	margin-top: 56px;
+	padding-top: 28px;
+	border-top: 1px solid $border;
+}
+
+.tech-stack__label {
+	margin-bottom: 14px;
+	font-family: $font-mono;
+	font-size: 10px;
+	letter-spacing: 0.14em;
+	color: $text-dim;
+}
+
+.tech-stack__items {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	font-family: $font-mono;
+	font-size: 12px;
+
+	span {
+		padding: 6px 12px;
+		color: $steel;
+		border: 1px solid $border;
+	}
+}

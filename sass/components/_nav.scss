@@ -1,0 +1,70 @@
+@use '../abstracts/variables' as *;
+
+.nav {
+	position: fixed;
+	display: flex;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 100;
+	align-items: center;
+	justify-content: space-between;
+	padding: 20px clamp(20px, 4vw, 48px);
+	font-family: $font-mono;
+	font-size: 13px;
+	background: linear-gradient(to bottom, rgba(5, 7, 10, 0.85), transparent);
+	backdrop-filter: $hud-blur;
+}
+
+.nav__brand {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	font-size: 15px;
+}
+
+.nav__dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: $green;
+	box-shadow: 0 0 8px $green;
+	transition:
+		background 0.3s,
+		box-shadow 0.3s;
+
+	&.alert {
+		background: $red;
+		box-shadow: 0 0 12px $red;
+	}
+}
+
+.nav__links {
+	display: flex;
+	gap: 32px;
+	color: $text-dim;
+
+	a {
+		transition: color 0.2s;
+
+		&:hover {
+			color: $green;
+		}
+	}
+
+	@media (max-width: $bp-nav) {
+		display: none;
+	}
+}
+
+.nav__status {
+	color: $text-dim;
+	letter-spacing: 0.04em;
+}
+
+.nav__status-val {
+	color: $text;
+	font-weight: 600;
+}

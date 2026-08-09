@@ -1,0 +1,24 @@
+@use 'variables' as *;
+
+// HUD-style panel positioned with clamp() at a screen corner
+@mixin hud-corner-position {
+	top: clamp(70px, 10vh, 110px);
+}
+
+// mono, small letter-spaced label used in several HUD/section elements
+@mixin mono-label($size: 11px, $spacing: 0.1em) {
+	font-family: $font-mono;
+	font-size: $size;
+	letter-spacing: $spacing;
+}
+
+// 3-column grid that collapses to 1 column at $bp-grid, used across sections
+@mixin responsive-3col($gap) {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: $gap;
+
+	@media (max-width: $bp-grid) {
+		grid-template-columns: 1fr;
+	}
+}

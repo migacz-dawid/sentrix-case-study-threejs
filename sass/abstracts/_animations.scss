@@ -1,0 +1,11 @@
+@keyframes blink {
+	50% {
+		opacity: 0;
+	}
+}
+
+@keyframes fadeIn {
+	to {
+		opacity: 1;
+	}
+}

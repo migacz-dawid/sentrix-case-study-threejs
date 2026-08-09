@@ -1,0 +1,26 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.result-grid {
+	@include responsive-3col(32px);
+	margin-bottom: 48px;
+
+	@media (max-width: $bp-grid) {
+		gap: 28px;
+	}
+}
+
+.result-stat__value {
+	font-family: $font-mono;
+	font-size: clamp(2.4rem, 5vw, 3.4rem);
+	font-weight: 800;
+	font-variant-numeric: tabular-nums;
+	color: $green;
+}
+
+.result-stat__label {
+	color: $text-dim;
+	font-size: 0.88rem;
+	margin-top: 8px;
+	max-width: 240px;
+}
