@@ -1,7 +1,7 @@
 # 🛡️ SENTRIX — Case Study
 
 ## 📝 Opis
-Rozbudowana strona typu **case study / portfolio**, prezentująca fikcyjny projekt systemu AI do wykrywania zagrożeń i anomalii w ruchu sieciowym firmy w czasie rzeczywistym. Strona ma formę "raportu incydentu" podzielonego na sekcje (Problem, Podejście, Architektura, Wynik), z konsekwentnym motywem cyberbezpieczeństwa w warstwie wizualnej i treściowej. 
+Rozbudowana strona typu **case study / portfolio**, prezentująca wizualizację fikcyjnego projektu systemu AI do wykrywania zagrożeń i anomalii w ruchu sieciowym firmy w czasie rzeczywistym. Strona ma formę "raportu incydentu" podzielonego na sekcje (Problem, Podejście, Architektura, Wynik), z konsekwentnym motywem cyberbezpieczeństwa w warstwie wizualnej i treściowej. 
 
 W sekcji hero znajduje się **interaktywna wizualizacja sieci w Three.js** (canvas z węzłami i połączeniami) wraz z nakładką **HUD** (liczba aktywnych węzłów, poziom zagrożenia, przepustowość, czas działania) oraz symulowanym **terminalem logów zdarzeń**, aktualizowanym na żywo. Dodano przycisk **"Symuluj atak"**, który w czasie rzeczywistym zmienia poziom zagrożenia w HUD-zie i generuje nowe wpisy w logu terminala. 
 
